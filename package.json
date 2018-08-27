@@ -1,0 +1,18 @@
+{
+  "name": "react-native-pjbank-checkout-input",
+  "version": "1.0.1",
+  "description": "React native input component para checkout transparente utilizando o pjbank",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pjbank",
+    "checkout"
+  ],
+  "author": "André Luis Junqueira",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  }
+}
