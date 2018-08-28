@@ -5,7 +5,9 @@
 | Prop | type | Description |
 |--|--|--|
 | credencial | string | dever ser fornecida uma credencial para a geração de token |
-| onToken | function | função invocada quando o componente recebe o token |
+| homologacao | boolean | Se for passado `true` é trocado para o ambiente de homologação |
+| placeholder | string | Placeholder do componente input |
+| onData | function | Retorna um objeto no formato: `{token:'xxxxxx', bandeira:'xxxxxx'}`, que contém o token e a bandeira do cartão |
 | containerStyle | object | componente de estilo para o componente pai do input (wrapper) |
 | inputStyle | object | objeto com propriedades para o input, podem ser passadas a maioria das propriedades validas de um componente \<TextInput/>. As propriedades serão merjadas  para o input | 
 
@@ -34,5 +36,5 @@ Depois de importado o componente basta utiliza-lo em seu componente.
 	        ...
 	    }}
 	    credencial='xxxxxxxxxxxxxxxxxxx'
-	    onToken={(token)=>console.log('O token: '+token)}
+	    onData={(data)=>console.log('O token: '+ data.token + 'bandeira'+ data.bandeira)}
     />
