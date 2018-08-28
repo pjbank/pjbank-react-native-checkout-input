@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 import { View, WebView, TextInput } from 'react-native';
 import fns  from './functions';
 
-
 class CheckoutInput extends PureComponent{
 
     handleMessage = ({nativeEvent})=>{
         if(nativeEvent.data)
-            this.props.onToken(nativeEvent.data)
+            this.props.onData( JSON.parse(nativeEvent.data) );
     }
 
     render(){
-        const { inputStyle, placeholder } = this.props;
+        const { credencial, homologacao, inputStyle, placeholder } = this.props;
         const _inputStyle = fns.mapRnStyleToHtmlStyle(inputStyle);
+        const options = {
+            credencial,
+            homologacao
+        }
+
         return(
             <View style={this.props.containerStyle}>
                 <WebView
-                    ref={w=>this.wview = w}
                     source={{
-                        html: fns.generateHtmlCode({credencial: this.props.credencial, placeholder})(_inputStyle)
+                        html: fns.generateHtmlCode(options)(_inputStyle, placeholder)
                     }}
                     style={{flex:1, width: null, height: null }}
                     injectedJavaScript={fns.patchPostMessageFunction()}
@@ -34,7 +37,8 @@ class CheckoutInput extends PureComponent{
 }
 
 CheckoutInput.defaultProps = {
-    onToken: ()=>{},
+    onData: ()=>{},
+    homologacao: false,
     containerStyle: { height: 40, width: 350 },
     placeholder: 'Valid card number'
 
@@ -42,7 +46,8 @@ CheckoutInput.defaultProps = {
 
 CheckoutInput.propTypes = {
     credencial: PropTypes.string.isRequired,
-    onToken: PropTypes.func.isRequired,
+    homologacao: PropTypes.bool,
+    onData: PropTypes.func.isRequired,
     inputStyle: TextInput.propTypes.style,
     containerStyle: View.propTypes.style,
     placeholder: PropTypes.string
