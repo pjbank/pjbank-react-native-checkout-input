@@ -36,7 +36,7 @@ export default (function(){
             <script src="https://s3-sa-east-1.amazonaws.com/widgets.superlogica.net/embed.js" ></script>
             <script type="text/javascript">
                 superlogica.require("pjbank");
-                superlogica.pjbank("checkout_transparente","${config.credencial}","${config.homologacao}");
+                superlogica.pjbank("checkout_transparente","${config.credencial}",${config.homologacao});
                 function handleChange(token){
                     if(token){
                         var bandeira = document.getElementById("bandeira").value;                    
