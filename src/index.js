@@ -48,8 +48,8 @@ CheckoutInput.propTypes = {
     credencial: PropTypes.string.isRequired,
     homologacao: PropTypes.bool,
     onData: PropTypes.func.isRequired,
-    inputStyle: TextInput.propTypes.style,
-    containerStyle: View.propTypes.style,
+    inputStyle: PropTypes.style,
+    containerStyle: PropTypes.style,
     placeholder: PropTypes.string
 }
 
