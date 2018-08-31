@@ -57,13 +57,13 @@ export default (function(){
                 }
 
                 function onChangeInputCartao(text) {
-                    var data = {event: 'onChangeInputCartao', text};
+                    var data = {event: 'onChange', text};
                     window.postMessage(JSON.stringify(data));
                 }
 
             </script>
             <body style='margin: 0; padding: 0'>
-                <input type='number' class="pjbank-cartao" id="cartao" onchange="onChangeInputCartao(this.value)" onfocus="onFocusInputCartao()" onblur="onBlurInputCartao()" placeholder="${placeholder}" required style='width:100%; height: 100%; border-color: transparent; ${inputStyle}'>
+                <input type='number' class="pjbank-cartao" id="cartao" onkeyup="onChangeInputCartao(this.value)" onfocus="onFocusInputCartao()" onblur="onBlurInputCartao()" placeholder="${placeholder}" required style='width:100%; height: 100%; border-color: transparent; ${inputStyle}'>
                 <input type="hidden" name="pjbank-token" class="pjbank-token" onchange='handleChange(this.value)'>
                 <input type="hidden" id="bandeira" name="pjbank-cartao-bandeira" class="pjbank-cartao-bandeira">
             </body>

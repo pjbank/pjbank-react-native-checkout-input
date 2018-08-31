@@ -15,13 +15,14 @@ class CheckoutInput extends PureComponent{
         if (nativeEvent.data) {
             let data = JSON.parse(nativeEvent.data);
             if (data.event == EVENT_TYPE_ON_DATA) {
+                delete data.event;
                 this.props.onData(data);
             } else if (data.event == EVENT_TYPE_ON_FOCUS) {
-                this.props.onFocus(data);
+                this.props.onFocus();
             } else if (data.event == EVENT_TYPE_ON_BLUR) {
-                this.props.onBlur(data);
+                this.props.onBlur();
             } else if (data.event == EVENT_TYPE_ON_CHANGE) {
-                this.props.onChange(data);
+                this.props.onChange(data.text);
             } 
         }
     }
