@@ -3,11 +3,27 @@ import PropTypes from 'prop-types';
 import { View, WebView, TextInput } from 'react-native';
 import fns  from './functions';
 
+export const EVENT_TYPE_ON_DATA = 'onData';
+export const EVENT_TYPE_ON_FOCUS = 'onFocus';
+export const EVENT_TYPE_ON_BLUR = 'onBlur';
+export const EVENT_TYPE_ON_CHANGE = 'onChange';
+
 class CheckoutInput extends PureComponent{
 
+    
     handleMessage = ({nativeEvent})=>{
-        if(nativeEvent.data)
-            this.props.onData( JSON.parse(nativeEvent.data) );
+        if (nativeEvent.data) {
+            let data = JSON.parse(nativeEvent.data);
+            if (data.event == EVENT_TYPE_ON_DATA) {
+                this.props.onData(data);
+            } else if (data.event == EVENT_TYPE_ON_FOCUS) {
+                this.props.onFocus(data);
+            } else if (data.event == EVENT_TYPE_ON_BLUR) {
+                this.props.onBlur(data);
+            } else if (data.event == EVENT_TYPE_ON_CHANGE) {
+                this.props.onChange(data);
+            } 
+        }
     }
 
     render(){
@@ -37,7 +53,10 @@ class CheckoutInput extends PureComponent{
 }
 
 CheckoutInput.defaultProps = {
-    onData: ()=>{},
+    onData: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
+    onChange: () => {},
     homologacao: false,
     containerStyle: { height: 40, width: 350 },
     placeholder: 'Valid card number'
@@ -47,10 +66,13 @@ CheckoutInput.defaultProps = {
 CheckoutInput.propTypes = {
     credencial: PropTypes.string.isRequired,
     homologacao: PropTypes.bool,
-    onData: PropTypes.func.isRequired,
     inputStyle: PropTypes.style,
     containerStyle: PropTypes.style,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    onData: PropTypes.func.isRequired,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
 }
 
 
