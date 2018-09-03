@@ -12,7 +12,7 @@
 | onData | function | Retorna um objeto no formato: `{token:'xxxxxx', bandeira:'xxxxxx'}`, que contém o token e a bandeira do cartão |
 | onFocus | function | Callback invocado quando o input entra em foco | 
 | onBlur | function | Callback invocado quando o input sai de foco | 
-| onChange | function | `{(text) => console.log('text')}` Callback invocado quando o há alguma alteração de texto no input | 
+| onChange | function | ```js {(text) => console.log('text')}``` Callback invocado quando o há alguma alteração de texto no input | 
 
 #### Como utilizar
 Começe instalando o componente.
