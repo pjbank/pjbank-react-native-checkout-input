@@ -13,6 +13,7 @@
 | onFocus | function | Callback invocado quando o input entra em foco | 
 | onBlur | function | Callback invocado quando o input sai de foco | 
 | onChange | function | `{(text) => console.log('text')}` Callback invocado quando o há alguma alteração de texto no input | 
+| onDone | function | `{() => console.log('onDone')}` Callback invocado quando o clica no `actionButton` do teclado nativo | 
 
 #### Como utilizar
 Começe instalando o componente.
@@ -33,7 +34,7 @@ Depois de importado o componente basta utiliza-lo em seu componente.
 		    fontSize: 20
 		    ...
 	    }}
-	    containerStyle:{{
+	    containerStyle={{
 	        height: 20,
 	        width: 300,
 	        ...

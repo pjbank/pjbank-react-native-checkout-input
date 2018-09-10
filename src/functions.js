@@ -61,11 +61,41 @@ export default (function(){
                     window.postMessage(JSON.stringify(data));
                 }
 
+                function onKeyPressCartao(event) {
+                    if (event.keyCode == '13') {
+                        document.getElementById('cartao').blur();
+                        var data = {event: 'onDone'};
+                        window.postMessage(JSON.stringify(data));
+                        return false;
+                    }
+                }
+
             </script>
             <body style='margin: 0; padding: 0'>
-                <input type='number' class="pjbank-cartao" id="cartao" onkeyup="onChangeInputCartao(this.value)" onfocus="onFocusInputCartao()" onblur="onBlurInputCartao()" placeholder="${placeholder}" required style='width:100%; height: 100%; border-color: transparent; ${inputStyle}'>
-                <input type="hidden" name="pjbank-token" class="pjbank-token" onchange='handleChange(this.value)'>
-                <input type="hidden" id="bandeira" name="pjbank-cartao-bandeira" class="pjbank-cartao-bandeira">
+                <input 
+                    type="number"
+                    class="pjbank-cartao"
+                    id="cartao"
+                    onkeypress="onKeyPressCartao(event)"
+                    onkeyup="onChangeInputCartao(this.value)"
+                    onfocus="onFocusInputCartao()"
+                    onblur="onBlurInputCartao()"
+                    placeholder="${placeholder}"
+                    required 
+                    style="width:100%; height: 100%; border-color: transparent; ${inputStyle}"
+                >
+                <input 
+                    type="hidden" 
+                    name="pjbank-token" 
+                    class="pjbank-token" 
+                    onchange="handleChange(this.value)"
+                >
+                <input 
+                    type="hidden" 
+                    id="bandeira" 
+                    name="pjbank-cartao-bandeira" 
+                    class="pjbank-cartao-bandeira"
+                >
             </body>
         </html>
     `;

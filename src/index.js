@@ -7,11 +7,12 @@ export const EVENT_TYPE_ON_DATA = 'onData';
 export const EVENT_TYPE_ON_FOCUS = 'onFocus';
 export const EVENT_TYPE_ON_BLUR = 'onBlur';
 export const EVENT_TYPE_ON_CHANGE = 'onChange';
+export const EVENT_TYPE_ON_DONE = 'onDone';
 
 class CheckoutInput extends PureComponent{
 
     
-    handleMessage = ({nativeEvent})=>{
+    handleMessage = ({nativeEvent})=>{        
         if (nativeEvent.data) {
             let data = JSON.parse(nativeEvent.data);
             if (data.event == EVENT_TYPE_ON_DATA) {
@@ -23,7 +24,9 @@ class CheckoutInput extends PureComponent{
                 this.props.onBlur();
             } else if (data.event == EVENT_TYPE_ON_CHANGE) {
                 this.props.onChange(data.text);
-            } 
+            } else if (data.event == EVENT_TYPE_ON_DONE) {
+                this.props.onDone();
+            }
         }
     }
 
@@ -58,6 +61,7 @@ CheckoutInput.defaultProps = {
     onFocus: () => {},
     onBlur: () => {},
     onChange: () => {},
+    onDone: () => {},
     homologacao: false,
     containerStyle: { height: 40, width: 350 },
     placeholder: 'Valid card number'
@@ -71,6 +75,7 @@ CheckoutInput.propTypes = {
     containerStyle: PropTypes.style,
     placeholder: PropTypes.string,
     onData: PropTypes.func.isRequired,
+    onDone: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
