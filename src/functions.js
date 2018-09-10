@@ -57,8 +57,15 @@ export default (function(){
                 }
 
                 function onChangeInputCartao(text) {
-                    var data = {event: 'onChange', text};
-                    window.postMessage(JSON.stringify(data));
+                    var max = 16;
+
+                    if (text.length > max) {
+                        document.getElementById('cartao').value = text.substr(0, max);
+                        return;
+                    } else {
+                        var data = {event: 'onChange', text};
+                        window.postMessage(JSON.stringify(data));
+                    }
                 }
 
                 function onKeyPressCartao(event) {
