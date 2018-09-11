@@ -7,9 +7,13 @@
 | credencial | string | dever ser fornecida uma credencial para a geração de token |
 | homologacao | boolean | Se for passado `true` é trocado para o ambiente de homologação |
 | placeholder | string | Placeholder do componente input |
-| onData | function | Retorna um objeto no formato: `{token:'xxxxxx', bandeira:'xxxxxx'}`, que contém o token e a bandeira do cartão |
 | containerStyle | object | componente de estilo para o componente pai do input (wrapper) |
 | inputStyle | object | objeto com propriedades para o input, podem ser passadas a maioria das propriedades validas de um componente \<TextInput/>. As propriedades serão merjadas  para o input | 
+| onData | function | Retorna um objeto no formato: `{token:'xxxxxx', bandeira:'xxxxxx'}`, que contém o token e a bandeira do cartão |
+| onFocus | function | Callback invocado quando o input entra em foco | 
+| onBlur | function | Callback invocado quando o input sai de foco | 
+| onChange | function | `{(text) => console.log('text')}` Callback invocado quando o há alguma alteração de texto no input | 
+| onDone | function | `{() => console.log('onDone')}` Callback invocado quando o clica no `actionButton` do teclado nativo | 
 
 #### Como utilizar
 Começe instalando o componente.
@@ -30,7 +34,7 @@ Depois de importado o componente basta utiliza-lo em seu componente.
 		    fontSize: 20
 		    ...
 	    }}
-	    containerStyle:{{
+	    containerStyle={{
 	        height: 20,
 	        width: 300,
 	        ...

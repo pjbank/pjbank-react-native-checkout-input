@@ -37,18 +37,72 @@ export default (function(){
             <script type="text/javascript">
                 superlogica.require("pjbank");
                 superlogica.pjbank("checkout_transparente","${config.credencial}",${config.homologacao});
+                
                 function handleChange(token){
                     if(token){
                         var bandeira = document.getElementById("bandeira").value;                    
-                        var data = {token: token, bandeira: bandeira}
+                        var data = {event: 'onData', token: token, bandeira: bandeira}
                         window.postMessage(JSON.stringify(data));
                     }
                 }
+
+                function onFocusInputCartao() {
+                    var data = {event: 'onFocus'};
+                    window.postMessage(JSON.stringify(data));
+                }
+
+                function onBlurInputCartao() {
+                    var data = {event: 'onBlur'};
+                    window.postMessage(JSON.stringify(data));
+                }
+
+                function onChangeInputCartao(text) {
+                    var max = 16;
+
+                    if (text.length > max) {
+                        document.getElementById('cartao').value = text.substr(0, max);
+                        return;
+                    } else {
+                        var data = {event: 'onChange', text};
+                        window.postMessage(JSON.stringify(data));
+                    }
+                }
+
+                function onKeyPressCartao(event) {
+                    if (event.keyCode == '13') {
+                        document.getElementById('cartao').blur();
+                        var data = {event: 'onDone'};
+                        window.postMessage(JSON.stringify(data));
+                        return false;
+                    }
+                }
+
             </script>
             <body style='margin: 0; padding: 0'>
-                <input type='number' class="pjbank-cartao" id="cartao" placeholder="${placeholder}" required style='width:100%; height: 100%; border-color: transparent; ${inputStyle}'>
-                <input type="hidden" name="pjbank-token" class="pjbank-token" onchange='handleChange(this.value)'>
-                <input type="hidden" id="bandeira" name="pjbank-cartao-bandeira" class="pjbank-cartao-bandeira">
+                <input 
+                    type="number"
+                    class="pjbank-cartao"
+                    id="cartao"
+                    onkeypress="onKeyPressCartao(event)"
+                    onkeyup="onChangeInputCartao(this.value)"
+                    onfocus="onFocusInputCartao()"
+                    onblur="onBlurInputCartao()"
+                    placeholder="${placeholder}"
+                    required 
+                    style="width:100%; height: 100%; border-color: transparent; ${inputStyle}"
+                >
+                <input 
+                    type="hidden" 
+                    name="pjbank-token" 
+                    class="pjbank-token" 
+                    onchange="handleChange(this.value)"
+                >
+                <input 
+                    type="hidden" 
+                    id="bandeira" 
+                    name="pjbank-cartao-bandeira" 
+                    class="pjbank-cartao-bandeira"
+                >
             </body>
         </html>
     `;
