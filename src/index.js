@@ -22,6 +22,7 @@ class CheckoutInput extends PureComponent{
             <View style={this.props.containerStyle}>
                 <WebView
                     source={{
+                        baseUrl: '',
                         html: fns.generateHtmlCode(options)(_inputStyle, placeholder)
                     }}
                     style={{flex:1, width: null, height: null }}
