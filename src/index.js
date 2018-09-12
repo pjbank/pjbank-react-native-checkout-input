@@ -51,6 +51,7 @@ class CheckoutInput extends PureComponent{
                     javaScriptEnabled
                     bounces={false}
                     mixedContentMode={'always'}
+                    originWhitelist={['*']}
                 />
             </View>
         )
