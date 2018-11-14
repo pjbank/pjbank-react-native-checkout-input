@@ -51,7 +51,6 @@ class CheckoutInput extends PureComponent{
                     javaScriptEnabled
                     bounces={false}
                     mixedContentMode={'always'}
-                    originWhitelist={['*']}
                 />
             </View>
         )
@@ -66,6 +65,7 @@ CheckoutInput.defaultProps = {
     onDone: () => {},
     homologacao: false,
     containerStyle: { height: 40, width: 350 },
+    inputStyle: {},
     placeholder: 'Valid card number'
 
 }
@@ -73,8 +73,11 @@ CheckoutInput.defaultProps = {
 CheckoutInput.propTypes = {
     credencial: PropTypes.string.isRequired,
     homologacao: PropTypes.bool,
-    inputStyle: PropTypes.style,
-    containerStyle: PropTypes.style,
+    inputStyle: PropTypes.object,
+    containerStyle: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array
+    ]),
     placeholder: PropTypes.string,
     onData: PropTypes.func.isRequired,
     onDone: PropTypes.func,
