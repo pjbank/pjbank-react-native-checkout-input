@@ -31,11 +31,12 @@ class CheckoutInput extends PureComponent{
     }
 
     render(){
-        const { credencial, homologacao, inputStyle, placeholder } = this.props;
+        const { credencial, homologacao, inputStyle, placeholder, blurOnDone } = this.props;
         const _inputStyle = fns.mapRnStyleToHtmlStyle(inputStyle);
         const options = {
             credencial,
-            homologacao
+            homologacao,
+            blurOnDone
         }
 
         return(
@@ -65,6 +66,7 @@ CheckoutInput.defaultProps = {
     onChange: () => {},
     onDone: () => {},
     homologacao: false,
+    blurOnDone: false,
     containerStyle: { height: 40, width: 350 },
     inputStyle: {},
     placeholder: 'Valid card number'
@@ -85,6 +87,7 @@ CheckoutInput.propTypes = {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    blurOnDone: PropTypes.bool
 }
 
 
