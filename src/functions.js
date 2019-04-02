@@ -40,6 +40,7 @@ export default (function(){
                 
                 function handleChange(token){
                     if(token){
+                        if(${config.blurOnDone} === true) document.getElementById("cartao").blur();
                         var bandeira = document.getElementById("bandeira").value;                    
                         var data = {event: 'onData', token: token, bandeira: bandeira}
                         window.postMessage(JSON.stringify(data));
