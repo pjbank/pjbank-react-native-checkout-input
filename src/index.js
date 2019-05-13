@@ -1,6 +1,6 @@
 import React, { PureComponent }  from 'react';
 import PropTypes from 'prop-types';
-import { View, TextInput } from 'react-native';
+import { View } from 'react-native';
 import fns from './functions';
 import WebView from 'react-native-webview';
 
