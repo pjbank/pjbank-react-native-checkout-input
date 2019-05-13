@@ -14,7 +14,7 @@ export default (function(){
 
     patchPostMessageFunction = ()=>{
         const _patchPostMessageFunction = function() {
-            var originalPostMessage = window.postMessage;
+            var originalPostMessage = window.ReactNativeWebView.postMessage;
             
             var patchedPostMessage = function(message, targetOrigin, transfer) { 
                 originalPostMessage(message, targetOrigin, transfer);
@@ -24,7 +24,7 @@ export default (function(){
                 return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage');
             };
             
-            window.postMessage = patchedPostMessage;
+            window.ReactNativeWebView.postMessage = patchedPostMessage;
         
         };
         return '(' + String(_patchPostMessageFunction) + ')();';
@@ -43,18 +43,18 @@ export default (function(){
                         if(${config.blurOnDone} === true) document.getElementById("cartao").blur();
                         var bandeira = document.getElementById("bandeira").value;                    
                         var data = {event: 'onData', token: token, bandeira: bandeira}
-                        window.postMessage(JSON.stringify(data));
+                        window.ReactNativeWebView.postMessage(JSON.stringify(data));
                     }
                 }
 
                 function onFocusInputCartao() {
                     var data = {event: 'onFocus'};
-                    window.postMessage(JSON.stringify(data));
+                    window.ReactNativeWebView.postMessage(JSON.stringify(data));
                 }
 
                 function onBlurInputCartao() {
                     var data = {event: 'onBlur'};
-                    window.postMessage(JSON.stringify(data));
+                    window.ReactNativeWebView.postMessage(JSON.stringify(data));
                 }
 
                 function onChangeInputCartao(text) {
@@ -65,7 +65,7 @@ export default (function(){
                         return;
                     } else {
                         var data = {event: 'onChange', text};
-                        window.postMessage(JSON.stringify(data));
+                        window.ReactNativeWebView.postMessage(JSON.stringify(data));
                     }
                 }
 
@@ -73,7 +73,7 @@ export default (function(){
                     if (event.keyCode == '13') {
                         document.getElementById('cartao').blur();
                         var data = {event: 'onDone'};
-                        window.postMessage(JSON.stringify(data));
+                        window.ReactNativeWebView.postMessage(JSON.stringify(data));
                         return false;
                     }
                 }
