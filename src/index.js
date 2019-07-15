@@ -1,7 +1,8 @@
 import React, { PureComponent }  from 'react';
 import PropTypes from 'prop-types';
-import { View, WebView, TextInput } from 'react-native';
-import fns  from './functions';
+import { View } from 'react-native';
+import fns from './functions';
+import WebView from 'react-native-webview';
 
 export const EVENT_TYPE_ON_DATA = 'onData';
 export const EVENT_TYPE_ON_FOCUS = 'onFocus';

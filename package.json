@@ -13,6 +13,7 @@
   "author": "André Luis Junqueira",
   "license": "MIT",
   "dependencies": {
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.6.1",
+    "react-native-webview": "^5.8.1"
   }
 }
