@@ -12,22 +12,19 @@ export default (function(){
         },'');
     }
 
-    patchPostMessageFunction = ()=>{
-        const _patchPostMessageFunction = function() {
-            var originalPostMessage = window.postMessage;
-            
+    patchPostMessageFunction = () => {        
+        return `
+            var originalPostMessage = window.ReactNativeWebView.postMessage;
             var patchedPostMessage = function(message, targetOrigin, transfer) { 
                 originalPostMessage(message, targetOrigin, transfer);
             };
-            
             patchedPostMessage.toString = function() { 
                 return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage');
             };
             
             window.postMessage = patchedPostMessage;
-        
-        };
-        return '(' + String(_patchPostMessageFunction) + ')();';
+            true;
+        `;
     }
 
     generateHtmlCode = config => (inputStyle, placeholder) => `
@@ -37,7 +34,6 @@ export default (function(){
             <script type="text/javascript">
                 superlogica.require("pjbank");
                 superlogica.pjbank("checkout_transparente","${config.credencial}",${config.homologacao});
-                
                 function handleChange(token){
                     if(token){
                         if(${config.blurOnDone} === true) document.getElementById("cartao").blur();
@@ -58,8 +54,9 @@ export default (function(){
                 }
 
                 function onChangeInputCartao(text) {
-                    var max = 16;
+                    window.postMessage(JSON.stringify({teste: "aabababa"}))
 
+                    var max = 16;
                     if (text.length > max) {
                         document.getElementById('cartao').value = text.substr(0, max);
                         return;

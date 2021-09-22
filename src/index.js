@@ -1,6 +1,8 @@
 import React, { PureComponent }  from 'react';
 import PropTypes from 'prop-types';
-import { View, WebView, TextInput } from 'react-native';
+import { View } from 'react-native';
+import { WebView } from 'react-native-webview';
+
 import fns  from './functions';
 
 export const EVENT_TYPE_ON_DATA = 'onData';
